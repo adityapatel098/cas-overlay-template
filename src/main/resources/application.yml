@@ -1,3 +1,68 @@
 # Application properties that need to be
 # embedded within the web application can be included here
-
+server:
+    port: 8443
+    ssl:
+        key-store: classpath:/etc/cas/thekeystore
+        key-store-password: changeit
+spring:
+    main:
+        allow-bean-definition-overriding: true
+cas:
+    account-registration:
+        core:
+            crypto:
+                encryption:
+                    key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
+                signing:
+                    key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
+    authn:
+        throttle: 
+            jdbc: 
+                driverClass: com.mysql.cj.jdbc.Driver
+                user: root
+                password: root
+                url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
+                dialect: org.hibernate.dialect.MySQLDialect
+                ddlAuto: update
+        accept:
+            users:
+        jdbc:
+            query[0]:
+                sql: SELECT * FROM auth_user WHERE email = ?
+                url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+                dialect: org.hibernate.dialect.MySQLDialect
+                user: root
+                password: root
+                ddlAuto: none
+                driverClass: com.mysql.cj.jdbc.Driver
+                fieldPassword: password
+                passwordEncoder:
+                    type: BCRYPT
+                    encodingAlgorithm: PBKDF2WithHmacSHA1
+    webflow:
+        crypto:
+            enabled: false
+    events:
+        core: 
+            enabled: true
+            trackGeolocation: true
+        jpa: 
+            url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+            driverClass: com.mysql.cj.jdbc.Driver
+            enabled: true
+            user: root
+            password: root
+            dialect: org.hibernate.dialect.MySQLDialect
+            ddlAuto: update
+    spring:
+        cloud:
+            jdbc:
+                url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+                driverClass: com.mysql.cj.jdbc.Driver
+                user: root
+                password: root
+                sql: SELECT 1       
+#    jdbc: 
+#        gen-ddl: true
+#        show-sql: true

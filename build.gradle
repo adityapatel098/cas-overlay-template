@@ -39,6 +39,12 @@ buildscript {
         classpath "de.undercouch:gradle-download-task:${project.gradleDownloadTaskVersion}"
         classpath "org.apereo.cas:cas-server-core-api-configuration-model:${project.'cas.version'}"
         classpath "org.apereo.cas:cas-server-core-configuration-metadata-repository:${project.'cas.version'}"
+        classpath "org.apereo.cas:cas-server-support-json-service-registry:${project.'cas.version'}"
+		classpath "org.apereo.cas:cas-server-support-jdbc:${project.'cas.version'}"
+		classpath "org.apereo.cas:cas-server-support-events-jpa:${project.'cas.version'}"
+		classpath "org.apereo.cas:cas-server-support-configuration-cloud-jdbc:${project.'cas.version'}"
+		classpath "org.apereo.cas:cas-server-support-account-mgmt:${project.'cas.version'}"
+		classpath "org.apereo.cas:cas-server-core-events:${project.'cas.version'}"
     }
 }
 
@@ -84,6 +90,7 @@ apply plugin: "war"
 apply plugin: "org.springframework.boot"
 apply plugin: "io.freefair.lombok"
 
+apply plugin: "eclipse"
 
 apply from: rootProject.file("gradle/springboot.gradle")
 apply plugin: "com.google.cloud.tools.jib"
@@ -277,6 +284,12 @@ dependencies {
      **/
     implementation "org.apereo.cas:cas-server-support-rest"
 
+    implementation "org.apereo.cas:cas-server-support-json-service-registry"
+	implementation "org.apereo.cas:cas-server-support-jdbc"
+	implementation "org.apereo.cas:cas-server-support-events-jpa"
+	implementation "org.apereo.cas:cas-server-support-configuration-cloud-jdbc"
+	implementation "org.apereo.cas:cas-server-support-account-mgmt"
+	implementation "org.apereo.cas:cas-server-core-events"
     
     testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
