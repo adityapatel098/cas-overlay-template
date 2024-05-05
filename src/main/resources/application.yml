@@ -6,10 +6,6 @@ server:
         key-store: classpath:/etc/cas/thekeystore
         key-store-password: changeit
 spring:
-    mail:
-        default-encoding: "UTF-8"
-        host: 127.0.0.1
-        port: 8025
     main:
         allow-bean-definition-overriding: true
 cas:
@@ -19,23 +15,6 @@ cas:
                 key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
             signing: 
                 key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
-    account-registration:
-#        mail:
-#            attribute-name: email
-#            from: forgamecoc214@gmail.com
-#            subject: SSO Authentication
-#        sms:
-#            attribute-name: phone
-#            from: 912084422881
-        core:
-#            expiration: PT5M
-#            isIncludeServerIpAddress: false
-#            isIncludeClientIpAddress: false
-            crypto:
-                encryption:
-                    key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
-                signing:
-                    key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
     authn:
         throttle: 
             jdbc: 
