@@ -30,10 +30,10 @@ public class CasOverlayOverrideConfiguration {
     }
      */
 
-	@Bean
-	public AccountRegistrationPropertyLoader accountMgmtRegistrationPropertyLoader() {
-	    return new DefaultAccountRegistrationPropertyLoader(null);
-	}
+//	@Bean
+//	public AccountRegistrationPropertyLoader accountMgmtRegistrationPropertyLoader() {
+//	    return new DefaultAccountRegistrationPropertyLoader(null);
+//	}
 	
 	@Bean
 	public AccountRegistrationProvisionerConfigurer customProvisioningConfigurer() {
