@@ -42,9 +42,10 @@ buildscript {
         classpath "org.apereo.cas:cas-server-support-json-service-registry:${project.'cas.version'}"
 		classpath "org.apereo.cas:cas-server-support-jdbc:${project.'cas.version'}"
 		classpath "org.apereo.cas:cas-server-support-events-jpa:${project.'cas.version'}"
-		classpath "org.apereo.cas:cas-server-support-configuration-cloud-jdbc:${project.'cas.version'}"
-		classpath "org.apereo.cas:cas-server-support-account-mgmt:${project.'cas.version'}"
+		classpath "org.apereo.cas:cas-server-support-configuration:${project.'cas.version'}"
 		classpath "org.apereo.cas:cas-server-core-events:${project.'cas.version'}"
+        classpath "org.apereo.cas:cas-server-support-account-mgmt-api:${project.'cas.version'}"
+        classpath "org.apereo.cas:cas-server-support-account-mgmt-core:${project.'cas.version'}"
     }
 }
 
@@ -82,7 +83,6 @@ repositories {
         mavenContent { releasesOnly() }
     }
 }
-
 
 apply plugin: "io.freefair.war-overlay"
 apply plugin: "war"
@@ -287,10 +287,11 @@ dependencies {
     implementation "org.apereo.cas:cas-server-support-json-service-registry"
 	implementation "org.apereo.cas:cas-server-support-jdbc"
 	implementation "org.apereo.cas:cas-server-support-events-jpa"
-	implementation "org.apereo.cas:cas-server-support-configuration-cloud-jdbc"
-	implementation "org.apereo.cas:cas-server-support-account-mgmt"
+	implementation "org.apereo.cas:cas-server-support-configuration"
 	implementation "org.apereo.cas:cas-server-core-events"
-    
+    implementation "org.apereo.cas:cas-server-support-account-mgmt-api"
+    implementation "org.apereo.cas:cas-server-support-account-mgmt-core"
+
     testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
 
