@@ -5,6 +5,11 @@ server:
     ssl:
         key-store: classpath:/etc/cas/thekeystore
         key-store-password: changeit
+springdoc: 
+    api-docs: 
+        enabled: "true"
+    swagger-ui:
+        enabled: "true"
 spring:
     main:
         allow-bean-definition-overriding: true
@@ -17,6 +22,8 @@ cas:
                 key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
     authn:
         oidc:
+            core: 
+                issuer: "https://localhost:8443/cas/oidc"
             jwks: 
                 jpa: 
                     driver-class: com.mysql.cj.jdbc.Driver
@@ -25,6 +32,12 @@ cas:
                     user: root
                     password: root
                     ddl-auto: update
+                    idle-timeout: PT10M
+                    pool: 
+                        max-size: "18"
+                        max-wait: PT60S
+                        timeout-millis: 10000
+                        maximum-lifetime: PT10M
             registration: 
                 client-secret-expiration: 0
                 dynamic-client-registration-mode: "PROTECTED"
@@ -44,13 +57,13 @@ cas:
 #                    requesting-party-token: 
 #                        jwks-file: 
 #                            location: /etc/cas/jwks
-#            session-replication: 
-#                cookie: 
-#                    crypto: 
-#                        encryption: 
-#                            key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
-#                        signing:
-#                            key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
+            session-replication: 
+                cookie: 
+                    crypto: 
+                        encryption: 
+                            key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
+                        signing:
+                            key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
             crypto: 
                 encryption: 
                     key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
@@ -71,6 +84,12 @@ cas:
                 url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
                 dialect: org.hibernate.dialect.MySQLDialect
                 ddlAuto: update
+                idle-timeout: PT10M
+                pool: 
+                    max-size: "18"
+                    max-wait: PT60S
+                    timeout-millis: 10000
+                    maximum-lifetime: PT10M
         accept:
             users:
         jdbc:
@@ -101,14 +120,27 @@ cas:
             password: root
             dialect: org.hibernate.dialect.MySQLDialect
             ddlAuto: update
-    spring:
-        cloud:
-            jdbc:
-                url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-                driverClass: com.mysql.cj.jdbc.Driver
-                user: root
-                password: root
-                sql: SELECT 1       
-#    jdbc: 
-#        gen-ddl: true
-#        show-sql: true
+            idle-timeout: PT10M
+            pool: 
+                max-size: "18"
+                max-wait: PT60S
+                timeout-millis: 10000
+                maximum-lifetime: PT10M
+#    spring:
+#        cloud:
+#            jdbc:
+#                enabled: true
+#                url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#                driverClass: com.mysql.cj.jdbc.Driver
+#                dialect: org.hibernate.dialect.MySQLDialect
+#                ddl-auto: update
+#                user: root
+#                password: root
+#                sql: SELECT 1
+#                order: 1
+#                pool:
+#                    idle-timeout: 600000 # 10 minutes
+#                    max-lifetime: 1800000 # 30 minutes    
+    jdbc: 
+        gen-ddl: true
+        show-sql: true
