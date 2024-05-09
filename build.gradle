@@ -288,8 +288,10 @@ dependencies {
 	//implementation "org.apereo.cas:cas-server-support-configuration-cloud-jdbc"
 	implementation "org.apereo.cas:cas-server-core-events"
 	//implementation "org.apereo.cas:cas-server-support-oauth-webflow"
-	implementation "org.apereo.cas:cas-server-support-oidc"
-	implementation "org.apereo.cas:cas-server-support-oidc-jpa"
+	//implementation "org.apereo.cas:cas-server-support-oidc"
+	//implementation "org.apereo.cas:cas-server-support-oidc-jpa"
+	implementation "org.apereo.cas:cas-server-support-token-tickets"
+	implementation "org.apereo.cas:cas-server-support-jpa-ticket-registry"
 	implementation "org.apereo.cas:cas-server-support-swagger"
 	
     testImplementation "org.springframework.boot:spring-boot-starter-test"

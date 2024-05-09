@@ -14,36 +14,78 @@ spring:
     main:
         allow-bean-definition-overriding: true
 cas:
+    standalone: 
+        configuration-security: 
+            alg: PBEWithMD5AndTripleDES
+            initialization-vector: true
+            provider:
+            psw: JimatHosting
+    ticket:
+        tgt:
+            core:
+                max-length: 50
+                only-track-most-recent-session: true
+            primary:
+                time-to-kill-in-seconds: PT2H
+                max-time-to-live-in-seconds: PT8H
+        registry:
+            jpa: 
+                enabled: true
+                driverClass: com.mysql.cj.jdbc.Driver
+                user: root
+                password: root
+                url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
+                dialect: org.hibernate.dialect.MySQLDialect
+                ddlAuto: update
+                idle-timeout: PT10M
+                pool: 
+                    max-size: "18"
+                    max-wait: PT60S
+                    timeout-millis: 10000
+                    maximum-lifetime: PT10M
+                crypto: 
+                    enabled: false
+            cleaner: 
+               schedule: 
+                   enabled-on-host: ".*"
+                   enabled: true
+                   repeat-interval: PT2M
+                   start-delay: PT15S
     tgc: 
         crypto: 
-            encryption: 
-                key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
-            signing: 
-                key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
+            enabled: false
     authn:
-        oidc:
-            core: 
-                issuer: "https://localhost:8443/cas/oidc"
-            jwks: 
-                jpa: 
-                    driver-class: com.mysql.cj.jdbc.Driver
-                    url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-                    dialect: org.hibernate.dialect.MySQLDialect
-                    user: root
-                    password: root
-                    ddl-auto: update
-                    idle-timeout: PT10M
-                    pool: 
-                        max-size: "18"
-                        max-wait: PT60S
-                        timeout-millis: 10000
-                        maximum-lifetime: PT10M
-            registration: 
-                client-secret-expiration: 0
-                dynamic-client-registration-mode: "PROTECTED"
-                initial-access-token-user: "ABC"
-                initial-access-token-password: "ABC"
-        oauth:
+        accept:
+            enabled: false
+        token:
+            crypto: 
+                encryption: 
+                    key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
+                signing:
+                    key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
+#        oidc:
+#            core: 
+#                issuer: "https://localhost:8443/cas/oidc"
+#            jwks: 
+#                jpa: 
+#                    driver-class: com.mysql.cj.jdbc.Driver
+#                    url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#                    dialect: org.hibernate.dialect.MySQLDialect
+#                    user: root
+#                    password: root
+#                    ddl-auto: update
+#                    idle-timeout: PT10M
+#                    pool: 
+#                        max-size: "18"
+#                        max-wait: PT60S
+#                        timeout-millis: 10000
+#                        maximum-lifetime: PT10M
+#            registration: 
+#                client-secret-expiration: 0
+#                dynamic-client-registration-mode: "PROTECTED"
+#                initial-access-token-user: "ABC"
+#                initial-access-token-password: "ABC"
+#        oauth:
 #            uma: 
 #                resource-set: 
 #                    jpa: 
@@ -57,25 +99,25 @@ cas:
 #                    requesting-party-token: 
 #                        jwks-file: 
 #                            location: /etc/cas/jwks
-            session-replication: 
-                cookie: 
-                    crypto: 
-                        encryption: 
-                            key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
-                        signing:
-                            key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
-            crypto: 
-                encryption: 
-                    key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
-                signing:
-                    key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
-            access-token:
-                max-time-to-live-in-seconds: "PT8H" 
-                crypto: 
-                    encryption: 
-                        key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
-                    signing:
-                        key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
+#            session-replication: 
+#                cookie: 
+#                    crypto: 
+#                        encryption: 
+#                            key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
+#                        signing:
+#                            key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
+#            crypto: 
+#                encryption: 
+#                    key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
+#                signing:
+#                    key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
+#            access-token:
+#                max-time-to-live-in-seconds: "PT8H" 
+#                crypto: 
+#                    encryption: 
+#                        key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
+#                    signing:
+#                        key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
         throttle: 
             jdbc: 
                 driverClass: com.mysql.cj.jdbc.Driver
@@ -90,8 +132,6 @@ cas:
                     max-wait: PT60S
                     timeout-millis: 10000
                     maximum-lifetime: PT10M
-        accept:
-            users:
         jdbc:
             query[0]:
                 sql: SELECT * FROM auth_user WHERE email = ?
@@ -106,7 +146,9 @@ cas:
                     type: BCRYPT
                     encodingAlgorithm: PBKDF2WithHmacSHA1
     webflow:
-        crypto:
+        session:
+            storage: false
+        crypto: 
             enabled: false
     events:
         core: 
