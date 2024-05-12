@@ -14,6 +14,19 @@ spring:
     main:
         allow-bean-definition-overriding: true
 cas:
+    audit:
+        engine:
+            excluded-actions: AUTHENTICATION_EVENT_TRIGGERED
+        jdbc:
+            driverClass: com.mysql.cj.jdbc.Driver
+            dialect: org.hibernate.dialect.MySQLDialect
+            user: root
+            password: root
+            url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    logging:
+        mdc-enabled: "true"
+        #config: classpath:/etc/cas/config/log4j2.xml
+        #level: DEBUG
     standalone: 
         configuration-security: 
             alg: PBEWithMD5AndTripleDES

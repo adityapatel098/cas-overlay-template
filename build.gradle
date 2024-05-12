@@ -293,7 +293,9 @@ dependencies {
 	implementation "org.apereo.cas:cas-server-support-token-tickets"
 	implementation "org.apereo.cas:cas-server-support-jpa-ticket-registry"
 	implementation "org.apereo.cas:cas-server-support-swagger"
-	
+
+    implementation "org.apereo.cas:cas-server-support-audit-jdbc"
+
     testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
 
