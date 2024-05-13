@@ -23,16 +23,40 @@ cas:
             user: root
             password: root
             url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+            ddlAuto: update
+            idle-timeout: PT10M
+            pool: 
+                max-size: "18"
+                max-wait: PT60S
+                timeout-millis: 10000
+                maximum-lifetime: PT10M
     logging:
         mdc-enabled: "true"
-        #config: classpath:/etc/cas/config/log4j2.xml
-        #level: DEBUG
     standalone: 
         configuration-security: 
             alg: PBEWithMD5AndTripleDES
             initialization-vector: true
             provider:
             psw: JimatHosting
+    rest: 
+        services: 
+            attribute-name: "serviceID"
+            attribute-value: "^https?://.*$"
+    service-registry:
+        jpa: 
+            enabled: true
+            driverClass: com.mysql.cj.jdbc.Driver
+            user: root
+            password: root
+            url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
+            dialect: org.hibernate.dialect.MySQLDialect
+            ddlAuto: update
+            idle-timeout: PT10M
+            pool: 
+                max-size: "18"
+                max-wait: PT60S
+                timeout-millis: 10000
+                maximum-lifetime: PT10M
     ticket:
         tgt:
             core:
@@ -76,75 +100,6 @@ cas:
                     key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
                 signing:
                     key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
-#        oidc:
-#            core: 
-#                issuer: "https://localhost:8443/cas/oidc"
-#            jwks: 
-#                jpa: 
-#                    driver-class: com.mysql.cj.jdbc.Driver
-#                    url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-#                    dialect: org.hibernate.dialect.MySQLDialect
-#                    user: root
-#                    password: root
-#                    ddl-auto: update
-#                    idle-timeout: PT10M
-#                    pool: 
-#                        max-size: "18"
-#                        max-wait: PT60S
-#                        timeout-millis: 10000
-#                        maximum-lifetime: PT10M
-#            registration: 
-#                client-secret-expiration: 0
-#                dynamic-client-registration-mode: "PROTECTED"
-#                initial-access-token-user: "ABC"
-#                initial-access-token-password: "ABC"
-#        oauth:
-#            uma: 
-#                resource-set: 
-#                    jpa: 
-#                        driver-class: com.mysql.cj.jdbc.Driver
-#                        url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-#                        dialect: org.hibernate.dialect.MySQLDialect
-#                        user: root
-#                        password: root
-#                core: 
-#                    issuer: https://localhost:8443/cas
-#                    requesting-party-token: 
-#                        jwks-file: 
-#                            location: /etc/cas/jwks
-#            session-replication: 
-#                cookie: 
-#                    crypto: 
-#                        encryption: 
-#                            key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
-#                        signing:
-#                            key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
-#            crypto: 
-#                encryption: 
-#                    key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
-#                signing:
-#                    key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
-#            access-token:
-#                max-time-to-live-in-seconds: "PT8H" 
-#                crypto: 
-#                    encryption: 
-#                        key: h5-MvfCYVNH48a4gKm6pujXNp4K0lssHUlTaX6xjj_0
-#                    signing:
-#                        key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
-        throttle: 
-            jdbc: 
-                driverClass: com.mysql.cj.jdbc.Driver
-                user: root
-                password: root
-                url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
-                dialect: org.hibernate.dialect.MySQLDialect
-                ddlAuto: update
-                idle-timeout: PT10M
-                pool: 
-                    max-size: "18"
-                    max-wait: PT60S
-                    timeout-millis: 10000
-                    maximum-lifetime: PT10M
         jdbc:
             query[0]:
                 sql: SELECT * FROM auth_user WHERE email = ?
@@ -155,6 +110,12 @@ cas:
                 ddlAuto: none
                 driverClass: com.mysql.cj.jdbc.Driver
                 fieldPassword: password
+                idle-timeout: PT10M
+                pool: 
+                    max-size: "18"
+                    max-wait: PT60S
+                    timeout-millis: 10000
+                    maximum-lifetime: PT10M
                 passwordEncoder:
                     type: BCRYPT
                     encodingAlgorithm: PBKDF2WithHmacSHA1
@@ -181,21 +142,6 @@ cas:
                 max-wait: PT60S
                 timeout-millis: 10000
                 maximum-lifetime: PT10M
-#    spring:
-#        cloud:
-#            jdbc:
-#                enabled: true
-#                url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-#                driverClass: com.mysql.cj.jdbc.Driver
-#                dialect: org.hibernate.dialect.MySQLDialect
-#                ddl-auto: update
-#                user: root
-#                password: root
-#                sql: SELECT 1
-#                order: 1
-#                pool:
-#                    idle-timeout: 600000 # 10 minutes
-#                    max-lifetime: 1800000 # 30 minutes    
     jdbc: 
         gen-ddl: true
         show-sql: true

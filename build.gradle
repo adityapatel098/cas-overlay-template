@@ -39,11 +39,6 @@ buildscript {
         classpath "de.undercouch:gradle-download-task:${project.gradleDownloadTaskVersion}"
         classpath "org.apereo.cas:cas-server-core-api-configuration-model:${project.'cas.version'}"
         classpath "org.apereo.cas:cas-server-core-configuration-metadata-repository:${project.'cas.version'}"
-        classpath "org.apereo.cas:cas-server-support-json-service-registry:${project.'cas.version'}"
-		classpath "org.apereo.cas:cas-server-support-jdbc:${project.'cas.version'}"
-		classpath "org.apereo.cas:cas-server-support-events-jpa:${project.'cas.version'}"
-		classpath "org.apereo.cas:cas-server-support-configuration-cloud-jdbc:${project.'cas.version'}"
-		classpath "org.apereo.cas:cas-server-core-events:${project.'cas.version'}"
     }
 }
 
@@ -285,15 +280,12 @@ dependencies {
     implementation "org.apereo.cas:cas-server-support-json-service-registry"
 	implementation "org.apereo.cas:cas-server-support-jdbc"
 	implementation "org.apereo.cas:cas-server-support-events-jpa"
-	//implementation "org.apereo.cas:cas-server-support-configuration-cloud-jdbc"
 	implementation "org.apereo.cas:cas-server-core-events"
-	//implementation "org.apereo.cas:cas-server-support-oauth-webflow"
-	//implementation "org.apereo.cas:cas-server-support-oidc"
-	//implementation "org.apereo.cas:cas-server-support-oidc-jpa"
 	implementation "org.apereo.cas:cas-server-support-token-tickets"
 	implementation "org.apereo.cas:cas-server-support-jpa-ticket-registry"
+	implementation "org.apereo.cas:cas-server-support-rest-services"
+	implementation "org.apereo.cas:cas-server-support-jpa-service-registry"
 	implementation "org.apereo.cas:cas-server-support-swagger"
-
     implementation "org.apereo.cas:cas-server-support-audit-jdbc"
 
     testImplementation "org.springframework.boot:spring-boot-starter-test"
