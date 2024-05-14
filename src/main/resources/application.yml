@@ -91,6 +91,8 @@ cas:
                    enabled: true
                    repeat-interval: PT2M
                    start-delay: PT15S
+            core: 
+                enable-locking: false
     tgc: 
         crypto: 
             enabled: false
