@@ -40,8 +40,8 @@ cas:
             psw: JimatHosting
     rest: 
         services: 
-            attribute-name: "serviceID"
-            attribute-value: "^https?://.*$"
+            attribute-name: "authorities"
+            attribute-value: "ROLE_SERVICE_ADMIN"
     service-registry:
         jpa: 
             enabled: true
@@ -58,6 +58,9 @@ cas:
                 timeout-millis: 10000
                 maximum-lifetime: PT10M
     ticket:
+        st:
+            max-length: 50
+            time-to-kill-in-seconds: PT2H
         tgt:
             core:
                 max-length: 50
@@ -94,6 +97,10 @@ cas:
     authn:
         accept:
             enabled: false
+        attributeRepository:
+            stub:
+                attributes:
+                    authorities: ROLE_SERVICE_ADMIN
         token:
             crypto: 
                 encryption: 

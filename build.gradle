@@ -287,6 +287,8 @@ dependencies {
 	implementation "org.apereo.cas:cas-server-support-jpa-service-registry"
 	implementation "org.apereo.cas:cas-server-support-swagger"
     implementation "org.apereo.cas:cas-server-support-audit-jdbc"
+    implementation "org.apereo.cas:cas-server-support-jpa-util"
+    implementation "org.apereo.cas:cas-server-support-rest-tokens"
 
     testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
