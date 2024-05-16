@@ -14,6 +14,18 @@ spring:
     main:
         allow-bean-definition-overriding: true
 cas:
+    http-web-request:
+        cors:
+            enabled: false
+        header:
+            enabled: true
+    sso: 
+        create-sso-cookie-on-renew-authn: true
+        sso-enabled: true
+    slo: 
+        asynchronous: true
+        disabled: false
+        logout-propagation-type: AJAX
     audit:
         engine:
             excluded-actions: AUTHENTICATION_EVENT_TRIGGERED
@@ -102,7 +114,8 @@ cas:
         attributeRepository:
             stub:
                 attributes:
-                    authorities: ROLE_SERVICE_ADMIN
+                    aditya098patel@gmail.com:
+                        authorities: ROLE_SERVICE_ADMIN
         token:
             crypto: 
                 encryption: 
