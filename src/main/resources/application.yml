@@ -112,10 +112,8 @@ cas:
         accept:
             enabled: false
         attributeRepository:
-            stub:
-                attributes:
-                    aditya098patel@gmail.com:
-                        authorities: ROLE_SERVICE_ADMIN
+            json[0]:
+                location: classpath:/etc/cas/config/user-attributes.json
         token:
             crypto: 
                 encryption: 

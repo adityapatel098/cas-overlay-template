@@ -29,7 +29,7 @@ Jimat CAS Configuration Guidelines
 - Server will start on port mentioned in application.yml
 
 ### Features of Jimat CAS server
-- Register a service as example below and Basic Authentication user must be registered and has authorities ROLE_SERVICE_ADMIN mentioned in application.yml.
+- Register a service as example below and Basic Authentication user must be registered and has authorities ROLE_SERVICE_ADMIN mentioned in application.yml and user-attributes.json.
 
 ```
 curl --location 'https://localhost:8443/cas/v1/services' \
