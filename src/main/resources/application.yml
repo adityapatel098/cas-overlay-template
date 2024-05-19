@@ -32,9 +32,9 @@ cas:
         jdbc:
             driverClass: com.mysql.cj.jdbc.Driver
             dialect: org.hibernate.dialect.MySQLDialect
-            user: root
-            password: root
-            url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+            user: lssdev_staging
+            password: hnzIyt67X4
+            url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             ddlAuto: update
             idle-timeout: PT10M
             pool: 
@@ -58,9 +58,9 @@ cas:
         jpa: 
             enabled: true
             driverClass: com.mysql.cj.jdbc.Driver
-            user: root
-            password: root
-            url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
+            user: lssdev_staging
+            password: hnzIyt67X4
+            url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
             dialect: org.hibernate.dialect.MySQLDialect
             ddlAuto: update
             idle-timeout: PT10M
@@ -84,9 +84,9 @@ cas:
             jpa: 
                 enabled: true
                 driverClass: com.mysql.cj.jdbc.Driver
-                user: root
-                password: root
-                url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
+                user: lssdev_staging
+                password: hnzIyt67X4
+                url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
                 dialect: org.hibernate.dialect.MySQLDialect
                 ddlAuto: update
                 idle-timeout: PT10M
@@ -123,10 +123,10 @@ cas:
         jdbc:
             query[0]:
                 sql: SELECT * FROM auth_user WHERE email = ?
-                url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+                url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
                 dialect: org.hibernate.dialect.MySQLDialect
-                user: root
-                password: root
+                user: lssdev_staging
+                password: hnzIyt67X4
                 ddlAuto: none
                 driverClass: com.mysql.cj.jdbc.Driver
                 fieldPassword: password
@@ -149,11 +149,11 @@ cas:
             enabled: true
             trackGeolocation: true
         jpa: 
-            url: jdbc:mysql://127.0.0.1:3306/sso_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+            url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             driverClass: com.mysql.cj.jdbc.Driver
             enabled: true
-            user: root
-            password: root
+            user: lssdev_staging
+            password: hnzIyt67X4
             dialect: org.hibernate.dialect.MySQLDialect
             ddlAuto: update
             idle-timeout: PT10M
