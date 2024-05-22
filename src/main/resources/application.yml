@@ -140,7 +140,7 @@ cas:
                     maximum-lifetime: PT10M
                 passwordEncoder:
                     type: BCRYPT
-                    encodingAlgorithm: PBKDF2WithHmacSHA1
+                    encodingAlgorithm: PBKDF2WithHmacSHA512
     webflow:
         session:
             storage: false
