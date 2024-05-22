@@ -63,12 +63,10 @@ curl -X 'GET' \
   -H 'accept: */*'
 ```
 
-- Logout using service ticket
+- Logout user
 
 ```
-curl -X 'DELETE' \
-  'https://localhost:8443/cas/v1/tickets/{{SERVICE_TICKET}}' \
-  -H 'accept: application/json'
+https://localhost:8443/cas/logut
 ```
 
 - Swagger URL to check supported APIs
