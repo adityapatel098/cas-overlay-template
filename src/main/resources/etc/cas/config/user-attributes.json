@@ -1,5 +1,7 @@
 {
     "aditya098patel@gmail.com": {
         "authorities": ["ROLE_SERVICE_ADMIN"]
+    },"administrator": {
+        "authorities": ["ROLE_SERVICE_ADMIN"]
     }
 }

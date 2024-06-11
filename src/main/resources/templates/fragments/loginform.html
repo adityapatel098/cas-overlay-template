@@ -1,0 +1,116 @@
+<div th:fragment="loginform" class="d-flex flex-column justify-content-between m-auto">
+   <div class="login-form-header">
+      Central Authentication Service
+   </div>
+   <div class="form-wrapper login-form-wrapper">
+      <form method="post" id="fm1" action="login" th:object="${credential}">
+         <div id="login-form-controls">
+            <section class="cas-field form-group" id="usernameSection">
+               <label for="username"
+                  class="mdc-text-field mdc-text-field--outlined control-label w-100 mdc-text-field--invalid">
+               <span class="mdc-notched-outline mdc-notched-outline--upgraded">
+               <span class="mdc-notched-outline__leading"></span> <span
+                  class="mdc-notched-outline__notch" style=""> <span
+                  class="mdc-floating-label mdc-floating-label--required" style=""><span
+                  class="accesskey">U</span>ser ID:</span>
+               </span> <span class="mdc-notched-outline__trailing"></span>
+               </span> <input class="mdc-text-field__input form-control" id="username"
+                  size="25" type="text" accesskey="u" autocapitalize="none"
+                  spellcheck="false" autocomplete="username" required=""
+                  name="username" value="">
+               </label>
+               <div class="mdc-text-field-helper-line invalid-feedback">
+                  <div
+                     class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
+                     role="alert">
+                     <span id="usernameValidationMessage">User ID is a
+                     required field.</span>
+                  </div>
+               </div>
+               <script type="text/javascript">
+                  /*<![CDATA[*/
+                  let username = "";
+                  let disabled = false;
+                  
+                  if (username != null && username !== '') {
+                  	$('#username').val(username);
+                  	if (disabled) {
+                  		$('#usernameSection').hide();
+                  	}
+                  }
+                  /*]]>*/
+               </script>
+            </section>
+            <section
+               class="cas-field form-group mdc-input-group form-group"
+               id="passwordSection">
+               <div class="mdc-input-group-field mdc-input-group-field-append">
+                  <label for="password"
+                     class="mdc-text-field caps-check mdc-text-field--outlined control-label mdc-text-field--with-trailing-icon w-100">
+                  <span class="mdc-notched-outline mdc-notched-outline--upgraded">
+                  <span class="mdc-notched-outline__leading"></span> <span
+                     class="mdc-notched-outline__notch"> <span
+                     class="mdc-floating-label mdc-floating-label--required"
+                     style=""><span class="accesskey">P</span>assword:</span>
+                  </span> <span class="mdc-notched-outline__trailing"></span>
+                  </span> <input class="mdc-text-field__input form-control pwd"
+                     type="password" id="password" size="25" required="" accesskey="p"
+                     autocomplete="off" name="password" value="">
+                  <button
+                     class="reveal-password mdc-button mdc-button--unelevated mdc-input-group-append mdc-icon-button btn btn-primary"
+                     tabindex="-1" type="button">
+                  <i class="mdi mdi-eye reveal-password-icon fas fa-eye"></i> <span
+                     class="visually-hidden">Toggle Password</span>
+                  </button>
+                  </label>
+                  <div class="mdc-text-field-helper-line invalid-feedback">
+                     <div
+                        class="mdc-text-field-helper-text mdc-text-field-helper-text--validation-msg"
+                        aria-hidden="true">
+                        <span id="passwordValidationMessage">Password is a
+                        required field.</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="mdc-text-field-helper-line invalid-feedback caps-warn">
+                  <div
+                     class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg text-danger">
+                     <span>CAPSLOCK key is turned on!</span>
+                  </div>
+               </div>
+            </section>
+            <section class="cas-field form-group my-3"></section>
+            <section class="cas-field">
+               <input type="hidden" name="execution" th:value="${flowExecutionKey}">
+               <input type="hidden" name="_eventId" value="submit">
+               <input type="hidden" name="geolocation">
+            </section>
+            <button
+               class="mdc-button mdc-button--raised btn btn-primary btn-primary"
+               name="submitBtn" accesskey="l" type="submit" value="Login">
+            <span class="mdc-button__label">Login</span>
+            </button>
+         </div>
+      </form>
+      <div class="my-5"></div>
+      <div th:insert="fragments/loginsidebar.html :: loginsidebar"></div>
+      <div th:insert="fragments/pmlinks.html :: pmlinks"></div>
+      <script type="text/javascript">
+         /*<![CDATA[*/
+         var i = "One moment please..."
+         var j = "Login"
+         /*]]>*/
+         $(window).on('pageshow', function() {
+         	$(':submit').prop('disabled', false);
+         	$(':submit').attr('value', j);
+         });
+         $(document).ready(function() {
+         	$("#fm1").submit(function() {
+         		$(":submit").attr("disabled", true);
+         		$(":submit").attr("value", i);
+         		return true;
+         	});
+         });
+      </script>
+   </div>
+</div>
