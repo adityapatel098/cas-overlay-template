@@ -28,6 +28,8 @@ cas:
         asynchronous: true
         disabled: false
         logout-propagation-type: AJAX
+    logout:
+        follow-service-redirects: true
     audit:
         engine:
             excluded-actions: AUTHENTICATION_EVENT_TRIGGERED
