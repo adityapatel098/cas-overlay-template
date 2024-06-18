@@ -135,7 +135,7 @@ cas:
                 driverClass: com.mysql.cj.jdbc.Driver
                 fieldPassword: password
                 idle-timeout: PT10M
-                principal-attribute-list: first_name,last_name,email
+                principal-attribute-list: id,first_name,last_name,email,username,inceif_type,inceif_status
                 pool: 
                     max-size: "18"
                     max-wait: PT60S
