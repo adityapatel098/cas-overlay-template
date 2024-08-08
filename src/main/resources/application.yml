@@ -126,7 +126,7 @@ cas:
                     key: CN5dCk3HfFOqb4TWYso9fJ3mNKoTeBILo_e9GpI-Pe8IMyzx_dz6SjYqsNZJDmU6vPpAa5qFKef6tQ0zEGGe7A
         jdbc:
             query[0]:
-                sql: SELECT au.email as username,au.* FROM auth_user au WHERE au.username = ?
+                sql: SELECT au.email as username,au.* FROM auth_user au WHERE au.email = ? ORDER BY au.id DESC LIMIT 1
                 url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
                 dialect: org.hibernate.dialect.MySQLDialect
                 user: lssdev_staging

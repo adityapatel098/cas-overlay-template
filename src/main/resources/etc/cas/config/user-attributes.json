@@ -1,7 +1,7 @@
 {
     "aditya098patel@gmail.com": {
         "authorities": ["ROLE_SERVICE_ADMIN"]
-    },"administrator": {
+    },"support@my-sands.com": {
         "authorities": ["ROLE_SERVICE_ADMIN"]
     }
 }
