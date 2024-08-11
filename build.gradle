@@ -289,7 +289,14 @@ dependencies {
     implementation "org.apereo.cas:cas-server-support-audit-jdbc"
     implementation "org.apereo.cas:cas-server-support-jpa-util"
     implementation "org.apereo.cas:cas-server-support-rest-tokens"
-
+    implementation "org.apereo.cas:cas-server-core-web-api"
+    implementation "org.apereo.cas:cas-server-core-services-authentication"
+    implementation "org.apereo.cas:cas-server-core-configuration"
+    implementation "org.apereo.cas:cas-server-core-services"
+    implementation "org.apereo.cas:cas-server-support-token-core-api"
+    implementation "org.apereo.cas:cas-server-core-tickets"
+    implementation "org.apereo.cas:cas-server-core-util-api"
+    
     testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
 

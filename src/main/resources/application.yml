@@ -13,6 +13,13 @@ springdoc:
 spring:
     main:
         allow-bean-definition-overriding: true
+logging:
+    level:
+        org.springframework.boot.autoconfigure: DEBUG
+        org.apereo.cas: DEBUG
+CasFeatureModule:
+    Tokens:
+        enabled: false
 cas:
     view: 
         template-prefixes: classpath:/templates
