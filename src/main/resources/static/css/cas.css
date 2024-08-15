@@ -675,6 +675,15 @@ button.close {
     max-width: 40%;
 }
 
+@media screen and (max-width: 768px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm {
+        max-width: 90%;
+    }
+}
+
 .mdc-text-field--outlined {
     height: 45px;
 }
