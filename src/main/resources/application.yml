@@ -1,6 +1,20 @@
 # Application properties that need to be
 # embedded within the web application can be included here
 server:
+    tomcat:
+        background-processor-delay: 0s
+        threads:
+          max: 200  # Maximum number of worker threads
+          min-spare: 10  # Minimum number of worker threads always kept alive
+        max-connections: 10000  # Maximum number of connections that the server will accept and process at any given time
+        accept-count: 100  # Maximum queue length for incoming connection requests when all possible request processing threads are in use
+        max-keep-alive-requests: 1  # Maximum number of HTTP requests which can be pipelined until the connection is closed by the server
+        connection-timeout: 20000  # Connection timeout in milliseconds
+        max-http-form-post-size: 2MB  # Maximum size of the HTTP post content
+        uri-encoding: UTF-8  # Character encoding to use to decode the URI
+        compression:
+            enabled: true  # Enable response compression
+            min-response-size: 2048
     port: 8443
     ssl:
         key-store: classpath:/etc/cas/thekeystore
@@ -11,6 +25,9 @@ springdoc:
     swagger-ui:
         enabled: "true"
 spring:
+    mvc:
+        async:
+            request-timeout: 3600000
     main:
         allow-bean-definition-overriding: true
 logging:
@@ -47,12 +64,6 @@ cas:
             password: hnzIyt67X4
             url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             ddlAuto: update
-            idle-timeout: PT10M
-            pool: 
-                max-size: "18"
-                max-wait: PT60S
-                timeout-millis: 10000
-                maximum-lifetime: PT10M
     logging:
         mdc-enabled: "true"
     standalone: 
@@ -74,12 +85,6 @@ cas:
             url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
             dialect: org.hibernate.dialect.MySQLDialect
             ddlAuto: update
-            idle-timeout: PT10M
-            pool: 
-                max-size: "18"
-                max-wait: PT60S
-                timeout-millis: 10000
-                maximum-lifetime: PT10M
     ticket:
         st:
             max-length: 50
@@ -100,12 +105,6 @@ cas:
                 url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
                 dialect: org.hibernate.dialect.MySQLDialect
                 ddlAuto: update
-                idle-timeout: PT10M
-                pool: 
-                    max-size: "18"
-                    max-wait: PT60S
-                    timeout-millis: 10000
-                    maximum-lifetime: PT10M
                 crypto: 
                     enabled: false
             cleaner: 
@@ -141,13 +140,7 @@ cas:
                 ddlAuto: none
                 driverClass: com.mysql.cj.jdbc.Driver
                 fieldPassword: password
-                idle-timeout: PT10M
                 principal-attribute-list: id,first_name,last_name,email,username,inceif_type,inceif_status
-                pool: 
-                    max-size: "18"
-                    max-wait: PT60S
-                    timeout-millis: 10000
-                    maximum-lifetime: PT10M
                 passwordEncoder:
                     type: BCRYPT
                     encodingAlgorithm: PBKDF2WithHmacSHA512
@@ -168,12 +161,6 @@ cas:
             password: hnzIyt67X4
             dialect: org.hibernate.dialect.MySQLDialect
             ddlAuto: update
-            idle-timeout: PT10M
-            pool: 
-                max-size: "18"
-                max-wait: PT60S
-                timeout-millis: 10000
-                maximum-lifetime: PT10M
     jdbc: 
         gen-ddl: true
         show-sql: true
