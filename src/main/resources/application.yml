@@ -66,8 +66,6 @@ cas:
             password: hnzIyt67X4
             url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             ddlAuto: update
-    logging:
-        mdc-enabled: "true"
     standalone: 
         configuration-security: 
             alg: PBEWithMD5AndTripleDES

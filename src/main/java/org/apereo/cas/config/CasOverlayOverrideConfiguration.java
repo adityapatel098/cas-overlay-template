@@ -2,16 +2,17 @@ package org.apereo.cas.config;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apereo.cas.CentralAuthenticationService;
+import org.apereo.cas.authentication.principal.PrincipalResolver;
 import org.apereo.cas.authentication.principal.ResponseBuilder;
 import org.apereo.cas.authentication.principal.ServiceFactory;
 import org.apereo.cas.authentication.principal.WebApplicationService;
 import org.apereo.cas.configuration.CasConfigurationProperties;
 import org.apereo.cas.configuration.model.core.util.EncryptionOptionalSigningOptionalJwtCryptographyProperties;
 import org.apereo.cas.services.ServicesManager;
-import org.apereo.cas.ticket.ExpirationPolicyBuilder;
+import org.apereo.cas.ticket.TicketFactory;
 import org.apereo.cas.token.JwtBuilder;
+import org.apereo.cas.token.JwtTicketBuilder;
 import org.apereo.cas.token.JwtTokenCipherSigningPublicKeyEndpoint;
-import org.apereo.cas.token.JwtTokenTicketBuilder;
 import org.apereo.cas.token.TokenTicketBuilder;
 import org.apereo.cas.token.authentication.TokenCredential;
 import org.apereo.cas.token.cipher.JwtTicketCipherExecutor;
@@ -32,6 +33,7 @@ import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -101,23 +103,29 @@ public class CasOverlayOverrideConfiguration {
 
 	@RefreshScope(proxyMode = ScopedProxyMode.DEFAULT)
 	@Bean
-	public JwtBuilder tokenTicketJwtBuilder(final CasConfigurationProperties casProperties,
-			@Qualifier("tokenCipherExecutor") final CipherExecutor tokenCipherExecutor,
-			@Qualifier(ServicesManager.BEAN_NAME) final ServicesManager servicesManager) {
-		return new JwtBuilder(tokenCipherExecutor, servicesManager, new RegisteredServiceJwtTicketCipherExecutor(),
-				casProperties);
-	}
+	 public JwtBuilder tokenTicketJwtBuilder(
+	            final ConfigurableApplicationContext applicationContext,
+	            final CasConfigurationProperties casProperties,
+	            @Qualifier(PrincipalResolver.BEAN_NAME_PRINCIPAL_RESOLVER)
+	            final PrincipalResolver defaultPrincipalResolver,
+	            @Qualifier("tokenCipherExecutor") final CipherExecutor tokenCipherExecutor,
+	            @Qualifier(ServicesManager.BEAN_NAME) final ServicesManager servicesManager) {
+	            return new JwtBuilder(tokenCipherExecutor, applicationContext, servicesManager, defaultPrincipalResolver,
+	                new RegisteredServiceJwtTicketCipherExecutor(), casProperties);
+	        }
 
 	@RefreshScope(proxyMode = ScopedProxyMode.DEFAULT)
 	@Bean
-	public TokenTicketBuilder tokenTicketBuilder(final CasConfigurationProperties casProperties,
-			@Qualifier("tokenTicketValidator") final TicketValidator tokenTicketValidator,
-			@Qualifier("tokenTicketJwtBuilder") final JwtBuilder tokenTicketJwtBuilder,
-			@Qualifier(ServicesManager.BEAN_NAME) final ServicesManager servicesManager,
-			@Qualifier(ExpirationPolicyBuilder.BEAN_NAME_TICKET_GRANTING_TICKET_EXPIRATION_POLICY) final ExpirationPolicyBuilder grantingTicketExpirationPolicy) {
-		return new JwtTokenTicketBuilder(tokenTicketValidator, grantingTicketExpirationPolicy, tokenTicketJwtBuilder,
-				servicesManager, casProperties);
-	}
+	public TokenTicketBuilder tokenTicketBuilder(
+            final CasConfigurationProperties casProperties,
+            @Qualifier("tokenTicketValidator") final TicketValidator tokenTicketValidator,
+            @Qualifier(JwtBuilder.TICKET_JWT_BUILDER_BEAN_NAME) final JwtBuilder tokenTicketJwtBuilder,
+            @Qualifier(ServicesManager.BEAN_NAME) final ServicesManager servicesManager,
+            @Qualifier(TicketFactory.BEAN_NAME)
+            final TicketFactory ticketFactory) {
+            return new JwtTicketBuilder(tokenTicketValidator, ticketFactory,
+                tokenTicketJwtBuilder, servicesManager, casProperties);
+        }
 
 	@Bean
 	@ConditionalOnAvailableEndpoint
