@@ -62,9 +62,9 @@ cas:
         jdbc:
             driverClass: com.mysql.cj.jdbc.Driver
             dialect: org.hibernate.dialect.MySQLDialect
-            user: lssdev_staging
-            password: hnzIyt67X4
-            url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+            user: root
+            password: q*tBgO1fNf
+            url: jdbc:mysql://dev-cas-sso.fibernatic-dev.com:3306/lss_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             ddlAuto: update
     standalone: 
         configuration-security: 
@@ -80,9 +80,9 @@ cas:
         jpa: 
             enabled: true
             driverClass: com.mysql.cj.jdbc.Driver
-            user: lssdev_staging
-            password: hnzIyt67X4
-            url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
+            user: root
+            password: q*tBgO1fNf
+            url: jdbc:mysql://dev-cas-sso.fibernatic-dev.com:3306/lss_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
             dialect: org.hibernate.dialect.MySQLDialect
             ddlAuto: update
     ticket:
@@ -100,9 +100,9 @@ cas:
             jpa: 
                 enabled: true
                 driverClass: com.mysql.cj.jdbc.Driver
-                user: lssdev_staging
-                password: hnzIyt67X4
-                url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
+                user: root
+                password: q*tBgO1fNf
+                url: jdbc:mysql://dev-cas-sso.fibernatic-dev.com:3306/lss_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC 
                 dialect: org.hibernate.dialect.MySQLDialect
                 ddlAuto: update
                 crypto: 
@@ -133,14 +133,14 @@ cas:
         jdbc:
             query[0]:
                 sql: SELECT au.email as username,au.* FROM auth_user au WHERE au.email = ? AND au.inceif_status IN ('active') ORDER BY au.id DESC LIMIT 1
-                url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+                url: jdbc:mysql://dev-cas-sso.fibernatic-dev.com:3306/lss_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
                 dialect: org.hibernate.dialect.MySQLDialect
-                user: lssdev_staging
-                password: hnzIyt67X4
+                user: root
+                password: q*tBgO1fNf
                 ddlAuto: none
                 driverClass: com.mysql.cj.jdbc.Driver
                 fieldPassword: password
-                principal-attribute-list: id,first_name,last_name,email,username,inceif_type,inceif_status
+                principal-attribute-list: id,first_name,last_name,email,username,inceif_type,inceif_status, user_role, user_type
                 passwordEncoder:
                     type: BCRYPT
                     encodingAlgorithm: PBKDF2WithHmacSHA512
@@ -154,11 +154,11 @@ cas:
             enabled: true
             trackGeolocation: true
         jpa: 
-            url: jdbc:mysql://lssdev.info:3306/lssdev_staging?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+            url: jdbc:mysql://dev-cas-sso.fibernatic-dev.com:3306/lss_production?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
             driverClass: com.mysql.cj.jdbc.Driver
             enabled: true
-            user: lssdev_staging
-            password: hnzIyt67X4
+            user: root
+            password: q*tBgO1fNf
             dialect: org.hibernate.dialect.MySQLDialect
             ddlAuto: update
     jdbc: 
